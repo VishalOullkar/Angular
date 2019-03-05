@@ -1,0 +1,111 @@
+<app-navbar></app-navbar>
+
+
+<div class="row">
+
+  <div class="col-md-6">
+    <!--<h1>File upload</h1><br />
+    <br /><br />
+    <input type="file" (change)="onFileSelected($event)" />
+
+    <button class="btn btn-primary" (click)="onLoad()">Upload</button>-->
+    <!--<table class="table">
+      <th>File Name</th>
+      <th>Type</th>
+      <th>Modified Date</th>
+      <th>size</th>
+
+      <tr *ngIf="selectedFile">
+        <td>{{selectedFile.name}}</td>
+        <td>{{selectedFile.type}}</td>
+        <td>{{selectedFile.lastModifiedDate}}</td>
+        <td>{{selectedFile.size}}</td>
+      </tr>
+    </table>-->
+  </div>
+  <div class="col-md-6">
+
+  </div>
+
+
+</div>
+
+
+
+<div class="row">
+
+  <div class="col-md-6">
+    <h1>File upload example</h1>
+    <form #Movie="ngForm" (ngSubmit)="savedata(Movie,Image)">
+      <input type="hidden" name="Id" [(ngModel)]="moviesService.SelectedMovie.Id" class="form-control" />
+      <div class="form-group">
+        <label for="title">
+          Title
+        </label>
+        <input name="Title" [(ngModel)]="moviesService.SelectedMovie.Title" class="form-control" />
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="ReleaseDate">
+          Date time Picker
+        </label>
+        <angular2-date-picker class="form-control" name="ReleaseDate" [(ngModel)]="moviesService.SelectedMovie.ReleaseDate" [settings]="settings" style="padding:0.2rem 0.1rem"></angular2-date-picker>
+
+        <strong>Selected date is:</strong> {{moviesService.SelectedMovie.ReleaseDate}}
+      </div>
+
+      <div class="form-group">
+        <label for="genre">
+          Genre
+        </label>
+        <input name="genre" [(ngModel)]="moviesService.SelectedMovie.Genre" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="price">
+          Price
+        </label>
+        <input name="price" [(ngModel)]="moviesService.SelectedMovie.Price" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="price">
+          File upload
+        </label>
+        <br />
+        <img [src]="imageurl" style="width:250px;height:200px" />
+        <!--<input type="file" (change)="onFileSelected($event)" />-->
+        <input type="file"  #Image accept="image/*" (change)="handleFileInput($event.target.files)"/>
+
+    <!--<button class="btn btn-primary" (click)="onLoad()">Upload</button>-->
+       <!--<button class="btn btn-primary" >Upload</button>-->
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-info" type="submit"><i class="fa fa-floppy-o"></i>Submit</button>
+        <button class="btn btn-lg btn-secondory" (click)="reset(Movie)" type="button"><i class="fa fa-repeat"></i>Reset</button>
+      </div>
+
+    </form> 
+
+  </div>
+
+  <div class="col-md-6">
+    <h1 style="color:white">  Blank</h1>
+    <h1 style="color:white">  Blank</h1>
+    <table class="table table-stripped table-hover">
+
+      <tr *ngFor="let mlist of moviesService.MovieList">
+        <!--<td>{{mlist.Id}}</td>-->
+        <td>{{mlist.Title}}</td>
+        <td>Rs. {{mlist.Price}} CR.</td>
+        <td> <a class="btn" (click)="showOrEdit(mlist)"><i class="fa fa-pencil-square-o"></i></a> </td>
+        <td> <a class="text-danger" (click)="Ondelete(mlist.Id)"><i class="fa fa-trash-o"></i></a> </td>
+      </tr>
+    </table>
+
+  </div>
+
+
+</div>
+
+

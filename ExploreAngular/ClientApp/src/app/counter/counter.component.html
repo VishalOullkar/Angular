@@ -1,0 +1,30 @@
+
+<app-navbar></app-navbar>
+<h1>Counter</h1>
+
+<p>This is a simple example of an Angular component.</p>
+
+<p>Current count: <strong>{{ currentCount }}</strong></p>
+
+<button (click)="incrementCounter()">Increment</button>
+<button (click)="DecrementCounter()">Decrement</button>
+<button (click)="ResetCounter()">Reset</button>
+
+<h3> Array Example</h3>
+
+<input type="text" #newHero />
+<button (click)="addHero(newHero.value)">Add</button>
+<ul>
+  <li *ngFor="let arr of myarr">
+    {{arr}}
+  </li>
+
+</ul>
+
+
+<select name="cars">
+  <option value="0">Volvo</option>
+  <option value="1">Saab</option>
+  <option value="2">Fiat</option>
+  <option value="3">Audi</option>
+</select>

@@ -1,0 +1,155 @@
+<app-navbar></app-navbar>
+
+<h1>Working with <b>Reactive Forms</b></h1><br>
+<label>
+  Name
+  <input type="text" class="form-control" [formControl]="name" />
+</label>
+<p>Displaying a form control value :<strong>{{name.value}}</strong> </p>
+<button type="button" class="btn-warning" (click)="updateName()">Update Name</button>
+<h3>Grouping Form controls</h3>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-6" style="background-color:lavender;">
+        <form [formGroup]="editorFormGrop" (ngSubmit)="onSubmit()">
+
+          <input type="hidden" class="form-control" formControlName="id" />
+
+          <div class="form-group">
+            <label>
+              First Name :
+              <input type="text" class="form-control" formControlName="firstName" onkeyup="this.value = this.value.toUpperCase();"
+                    required placeholder="Enter first name" />
+            </label><br />
+
+            <div class="validation-error" *ngIf="f.firstName.invalid && f.firstName.touched">This Field is Required.</div>
+            <!--<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+    <div *ngIf="f.firstName.errors.required">First Name is required</div>-->
+          <!--</div>-->
+          </div>
+
+
+      <div class="form-group">
+        <label>
+          Last Name :
+          <input type="text" class="form-control" formControlName="lastName" required placeholder="Enter last name" />
+        </label>
+
+        <div class="validation-error" *ngIf="f.lastName.invalid && f.lastName.touched">This Field is Required.</div>
+
+        <!--<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+  </div>-->
+      </div>
+
+          <!--<div class="form-group">
+        <label>
+          Email :
+          <input type="email" class="form-control" formControlName="Email" *ngIf="email.value !== '' && Email.untouched && Email.invalid" required placeholder="abc@xyz.com"
+                 [ngClass]="{ 'is-invalid': submitted && f.Email.errors  }" />
+        </label>
+        <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+          <div *ngIf="f.Email.errors.required">Email is required</div>
+        </div>
+      </div>-->
+          <!--<div formGroupName="addressGroup">-->
+
+
+          <h3>Address</h3>
+
+          <div class="form-group">
+            <label>
+              City :<input type="text" class="form-control" formControlName="city" required placeholder="Enter City" />
+            </label><br />
+
+            <div class="validation-error" *ngIf="f.city.invalid && f.city.touched">This Field is Required.</div>
+
+            <!--<div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+    <div *ngIf="f.city.errors.required">City is required</div>
+  </div>-->
+          </div>
+
+          <div class="form-group">
+            <label>
+              State :<input type="text" class="form-control" formControlName="state" required placeholder="Enter State"/>
+
+            </label><br />
+            city
+            <!--<div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+              <div *ngIf="f.state.errors.required">State is required</div>
+            </div>-->
+          </div>
+
+          <div class="form-group">
+            <label>
+              ZipCode :<input type="text" class="form-control" formControlName="zipCode" required placeholder="Enter Zip code"
+                      pattern="[0-9]+" minlength="6" maxlength="6" />
+            </label><br />
+            <!--<div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+              <div *ngIf="f.zipCode.errors.required">Zip code is required</div>
+            </div>-->
+          </div>
+
+          <div class="form-group">
+            <label>
+              <!--(keypress)="onlyNumberKey($event)"-->
+              Mobile no. :<input type="text" pattern="[0-9]+" minlength="10" maxlength="10" class="form-control" formControlName="mobno" required
+                               placeholder="+91" />
+            </label><br />
+            <!--<div *ngIf="submitted && f.mobno.errors" class="invalid-feedback">
+              <div *ngIf="f.mobno.errors.required">Mobile no. is required</div>
+            </div>-->
+          </div>
+
+          <div class="form-group">
+            <label>
+              <!--(keypress)="onlyNumberKey($event)"-->
+              Email :<input type="text" #email [pattern]="emailPattern" class="form-control" formControlName="email" required
+                            placeholder="abc@xyz.com" />
+            </label><br />
+            <div *ngIf="f.email.errors && (f.email.touched||f.email.invalid)">
+              <small class="text-danger" *ngIf="f.email.errors.required">Email is required</small>
+            </div>
+            Touched: {{f.email.touched}}
+            Invalid: {{f.email.invalid}}
+            Errors: {{f.email.errors.required}}
+
+            <!--<div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+    <div *ngIf="f.Email.errors.required">Email is required</div>
+  </div>-->
+          </div>
+
+          <p>
+            Form Status :{{editorFormGrop.status}}
+          </p>
+
+          <!--</div>-->
+
+          <button [disabled]="!editorFormGrop.valid" type="submit" class="btn-success">Submit</button>
+
+
+        </form>
+
+        <strong>Form Values : </strong>  {{editorFormGrop.value|json}}
+      </div>
+      <!--<div class="col-lg-6"><app-registerdetails></app-registerdetails></div>-->
+      <div class="col-lg-6">
+
+        <table class="table table-striped table-hover">
+
+          <tr *ngFor="let emplist of reactiveformsService.EmployeeList">
+
+            <td>{{emplist.Id}}</td>
+            <td>{{emplist.FirstName}}</td>
+
+            <td><a class="btn" (click)="ShowOrEdit(emplist)"><i class="fa fa-pencil-square-o"></i></a></td>
+          </tr>
+        </table>
+      </div>
+
+
+      </div>
+    </div>
+</div>

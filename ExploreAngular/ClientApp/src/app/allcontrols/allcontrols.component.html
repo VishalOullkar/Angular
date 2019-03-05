@@ -1,0 +1,155 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h1 style="color:brown"> CRUD by using all controls</h1>
+  <br />
+
+
+  <div class="row">
+
+
+    <div class="col-lg-6">
+      <div id="mycontrols">
+        <form #formdata="ngForm" (ngSubmit)="savedata(formdata)">
+
+          <input type="hidden" name="Id" [(ngModel)]="myservice.SelectedEmployee.Id" placeholder="Employee ID" class="form-control" />
+          <h2>Textbox example</h2><br />
+          <label>Enter name</label>
+
+          <div class="form-group">
+            <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  [(ngModel)]="myservice.SelectedEmployee.Name" name="Name" class=" form-control" required/>
+            <!--<h1> {{myservice.SelectedEmployee.Name}}</h1>-->
+            <small class="text-danger" [class.d-none]="name.valid||name.untouched">Name is required</small>
+          </div>
+          <!--{{name.untouched}}-->
+          <hr />
+          <h2>Radio button example</h2><br />
+
+          <div class="form-group">
+            <label>
+              Gender
+            </label>
+
+            <div class="form-control">
+              <label class="radio-inline">
+                <input type="radio" name="gender" value="male" [(ngModel)]="myservice.SelectedEmployee.Gender">
+                Male
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="gender" value="female" [(ngModel)]="myservice.SelectedEmployee.Gender">
+                Female
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="gender" value="Other" [(ngModel)]="myservice.SelectedEmployee.Gender">
+                Other
+              </label>
+            </div>
+          </div>
+
+
+          <hr />
+          <h2>Customise NgX DatePicker</h2>
+
+          <label>DOB</label><br />
+          <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+          <input type="text" name="DOB" placeholder="dd/mm/yyyy" [(ngModel)]="myservice.SelectedEmployee.Dob" bsDatepicker [bsConfig]= "{ dateInputFormat: 'YYYY-MM-DD'}"  placement="bottom" class="form-control" />
+
+          <hr>
+
+          <h2>Checkbox example</h2><br />
+          <label>Employee Status</label>
+          <div class="form-group">
+
+            <div class="form-control">
+
+              <label class="checkbox-inline">
+                <input type="checkbox" name="IsActiveEmp" [(ngModel)]="myservice.SelectedEmployee.IsActiveEmp">Is Active
+              </label>
+            </div>
+          </div>
+
+
+
+
+          <hr />
+          <h2>DropDown example</h2><br />
+          <label>Select Country</label>
+          <div class="dropdown">
+            <div class="form-control">
+
+              <select id="country" [(ngModel)]="myservice.SelectedEmployee.Country" name="country">
+                <option value="" disabled selected>--select--</option>
+                <option *ngFor="let clist of this.myservice.countrylist">{{clist.Name}}</option>
+                <!--<option value="">America</option>
+        <!--<option *ngFor="let item of categories" [value]="item.category">{{item.category}}</option>-->
+
+
+              </select>
+
+
+
+            </div>
+          </div>
+
+
+          <hr />
+          <h2>File upload example</h2><br />
+
+          <div class="form-group">
+            <label>Pick Image</label>
+            <div class="upload-inline">
+              <input type="file" (change)="onFileSelected($event)" [(ngModel)]="myservice.SelectedEmployee.Imageurl" name="Imageurl" />
+              <!--<br />-->
+              <button class="btn btn-primary" (click)="onLoad()">Upload</button>
+            </div>
+
+          </div>
+
+          <hr />
+
+
+
+          <!--<div *ngFor="let clist of this.myservice.countrylist">
+
+    <h2>{{clist.Name}}</h2>
+
+  </div>-->
+
+
+          <div>
+            <!--<h1 style="color:green"> {{msg}}</h1>-->
+            <div class="button-inline">
+              <button class="btn btn-lg btn-block btn-info" type="submit"><i class="fa fa-floppy-o"></i>Save</button>
+              <button class="btn btn-md btn-block btn-secondary" type="button" (click)="resetdata(formdata)">
+                <i class="fa fa-repeat"></i>Reset
+              </button><br />
+            </div>
+            <strong> Form values :  </strong>s   {{formdata.value|json}}
+          </div>
+
+
+        </form>
+      </div>
+
+
+    </div>
+    <div class="col-lg-6">
+
+
+      <table class="table table-striped table-hover">
+
+        <tr *ngFor="let emplist of myservice.EmployeeList">
+
+          <td>{{emplist.Id}}</td>
+          <td>{{emplist.Name}}</td>
+
+          <td><a class="btn" (click)="ShowOrEdit(emplist)"><i class="fa fa-pencil-square-o"></i></a></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!--<img src="/Image/Foodpanda-Logo.png" />
+  <a href="/Image/Foodpanda-Logo.png" download> download</a>-->
+</div>

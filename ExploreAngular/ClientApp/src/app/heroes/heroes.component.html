@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<h1>{{title}}</h1>
+<br>
+<h4 *ngIf="selectedHero" > My favorite hero is : <strong style="color:green"> {{selectedHero.name}}</strong></h4>
+<p>Heroes:</p>
+<ul class="heroes">
+  <li *ngFor="let Hero of heroes"
+      (click)="onSelect(Hero)">
+    <span class="badge">
+      {{Hero.id}}
+    </span>{{Hero.name}}
+    <!--<span class="badge">{{Hero.id}}</span>-->
+  </li>
+</ul>
+
+<!--<div *ngIf="selectedHero">
+  <h2>{{selectedHero.name | uppercase}}'S Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label>
+      name:
+      <input [(ngModel)]="selectedHero.name" placeholder="name">
+    </label>
+  </div>
+</div>-->
+<app-hero-details [hero]="selectedHero"></app-hero-details>
+<app-messages></app-messages>
