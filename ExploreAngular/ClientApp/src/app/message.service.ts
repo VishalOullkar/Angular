@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class MessageService {
 
   messages: string[] = [];
+  public isLogin: boolean = false;
 
   add(message: string) {
     this.messages.push(message);
@@ -13,5 +14,7 @@ export class MessageService {
     this.messages = [];
   }
   constructor() { }
+
+
 
 }

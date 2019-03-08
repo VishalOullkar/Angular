@@ -3,6 +3,7 @@ import { from } from 'rxjs';
 import { UserService } from '../employees/Shared/user.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MessageService } from '../../message.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   isLoginError: boolean = false;
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private messageService: MessageService) { }
 
-  ngOnInit() {
-  }
+
 
   msg: string;
   

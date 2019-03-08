@@ -1,90 +1,11 @@
-<!--<div style="width:1350px;background-color:aqua">-->
 
 
-
-<!--<ul>
-
-
-  <img src="../../assets/Img/logo-nav@2x.png" />
-
-  <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-    <a [routerLink]='["/home"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-home'></span> Home
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/counter"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-education'></span> Counter
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> Fetch data
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/Hero"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> Tour of Hero
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/SignUp"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> Sign Up
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/Forms"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> Reactive Forms
-    </a>
-  </li>
-
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/APIExample"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> Consuming API in App
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/Employee"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> CRUD operation using API
-    </a>
-  </li>
-
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/mycontroller"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> CRUD operation without external API
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/grid"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> ag GRID
-    </a>
-  </li>
-  <li [routerLinkActive]='["link-active"]'>
-    <a [routerLink]='["/allcontrols"]' (click)='collapse()'>
-      <span class='glyphicon glyphicon-th-list'></span> Using All controls
-    </a>
-  </li>
-  <div class="row">
-    <div class="col-md-11">
-
-    </div>
-    <input type="button" class="btn-warning" routerLink='/' value="LogOut" />
-  </div>
-</ul>-->
-
-
-<!--<div class="container">
-
-  <div class="row">
-  </div>
-
-</div>-->
 <div style="width:1350px; height:80px;background-color:blueviolet">
 
   <div class="row">
 
     <div class="col-md-3">
-      <img src="../../assets/Img/logo-nav@2x.png" />
+      <a [routerLink]='["/home"]'> <img src="../../assets/Img/logo-nav@2x.png" /></a> 
     </div>
     <div class="col-md-8">
       <div class="dropdown">
@@ -93,8 +14,11 @@
           <a [routerLink]='["/counter"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-education'></span> Counter
           </a>
-          <a [routerLink]='["/APIExample"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Consuming API in App
+          <a [routerLink]='["/BasicReactive"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Reactive Form
+          </a>
+          <a [routerLink]='["/BasicTemplate"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Template Form
           </a>
           <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Fetch data
@@ -102,22 +26,20 @@
           <a [routerLink]='["/Hero"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Tour of Hero
           </a>
-          <a [routerLink]='["/fileupload"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span>File upload
-          </a>
+        
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn"><strong>Forms</strong> </button>
         <div class="dropdown-content">
-          <a [routerLink]='["/SignUp"]' (click)='collapse()'>
+          <!--<a [routerLink]='["/SignUp"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Sign Up
-          </a>
+          </a>-->
           <a [routerLink]='["/Forms"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Reactive Forms
+            <span class='glyphicon glyphicon-th-list'></span>Dynamic Reactive Forms
           </a>
           <a [routerLink]='["/allcontrols"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Using All controls
+            <span class='glyphicon glyphicon-th-list'></span>Dynamic Template Forms
           </a>
         </div>
       </div>
@@ -126,10 +48,13 @@
         <button class="dropbtn"><strong>CRUD Operations & API</strong></button>
         <div class="dropdown-content">
           <a [routerLink]='["/Employee"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> CRUD operation using API
+            <span class='glyphicon glyphicon-th-list'></span> CRUD operation  using external API
           </a>
           <a [routerLink]='["/mycontroller"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> CRUD operation without external API
+          </a>
+          <a [routerLink]='["/fileupload"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> File upload
           </a>
           <a [routerLink]='["/APIExample"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Consuming API in App
@@ -149,7 +74,7 @@
       </div>
     </div>
     <div class="col-md-1">
-      <input type="button" class="btn-warning" routerLink='/' value="LogOut"/>
+      <input type="button" class="btn-warning"  routerLink='/' value="LogOut"/>
     </div>
 
   </div>

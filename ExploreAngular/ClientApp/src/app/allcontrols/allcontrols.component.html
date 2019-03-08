@@ -7,7 +7,7 @@
 
   <div class="row">
 
-
+    <h3 style="color:red"> {{errormsg}}</h3>
     <div class="col-lg-6">
       <div id="mycontrols">
         <form #formdata="ngForm" (ngSubmit)="savedata(formdata)">
@@ -17,7 +17,7 @@
           <label>Enter name</label>
 
           <div class="form-group">
-            <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  [(ngModel)]="myservice.SelectedEmployee.Name" name="Name" class=" form-control" required/>
+            <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" [(ngModel)]="myservice.SelectedEmployee.Name" name="Name" class=" form-control" required />
             <!--<h1> {{myservice.SelectedEmployee.Name}}</h1>-->
             <small class="text-danger" [class.d-none]="name.valid||name.untouched">Name is required</small>
           </div>
@@ -52,7 +52,7 @@
 
           <label>DOB</label><br />
           <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
-          <input type="text" name="DOB" placeholder="dd/mm/yyyy" [(ngModel)]="myservice.SelectedEmployee.Dob" bsDatepicker [bsConfig]= "{ dateInputFormat: 'YYYY-MM-DD'}"  placement="bottom" class="form-control" />
+          <input type="text" name="DOB" placeholder="dd/mm/yyyy" [(ngModel)]="myservice.SelectedEmployee.Dob" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD'}" placement="bottom" class="form-control" />
 
           <hr>
 
@@ -81,7 +81,7 @@
                 <option value="" disabled selected>--select--</option>
                 <option *ngFor="let clist of this.myservice.countrylist">{{clist.Name}}</option>
                 <!--<option value="">America</option>
-        <!--<option *ngFor="let item of categories" [value]="item.category">{{item.category}}</option>-->
+              <!--<option *ngFor="let item of categories" [value]="item.category">{{item.category}}</option>-->
 
 
               </select>
@@ -111,15 +111,15 @@
 
           <!--<div *ngFor="let clist of this.myservice.countrylist">
 
-    <h2>{{clist.Name}}</h2>
+          <h2>{{clist.Name}}</h2>
 
-  </div>-->
+        </div>-->
 
 
           <div>
             <!--<h1 style="color:green"> {{msg}}</h1>-->
             <div class="button-inline">
-              <button class="btn btn-lg btn-block btn-info" type="submit"><i class="fa fa-floppy-o"></i>Save</button>
+              <button class="btn btn-lg btn-block btn-info" [disabled]="!formdata.valid" type="submit"><i class="fa fa-floppy-o"></i>Save</button>
               <button class="btn btn-md btn-block btn-secondary" type="button" (click)="resetdata(formdata)">
                 <i class="fa fa-repeat"></i>Reset
               </button><br />
@@ -144,6 +144,7 @@
           <td>{{emplist.Name}}</td>
 
           <td><a class="btn" (click)="ShowOrEdit(emplist)"><i class="fa fa-pencil-square-o"></i></a></td>
+          <td><a class="text-danger" (click)="onDelete(emplist.Id)"><i class="fa fa-trash-o"></i></a></td>
         </tr>
       </table>
     </div>

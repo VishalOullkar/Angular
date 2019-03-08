@@ -26,6 +26,13 @@ export class ReactiveformsService {
     return this.http.post('api/ReactiveFormDatas', body, requestOptions).map(x => x.json());
   }
 
+  PutEmployee(Id:number,emp: Reactivemodel) {
+    var body = JSON.stringify(emp);
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Put, headers: headerOptions });
+    return this.http.put('api/ReactiveFormDatas/'+Id, body, requestOptions).map(x => x.json());
+  }
+
   getEmployeeList() {
     this.httpClient.get<ReactiveFormsModule[]>('api/ReactiveFormDatas')
       .map(data => {
@@ -35,6 +42,11 @@ export class ReactiveformsService {
       })
       .toPromise().then(x => {
       })
+  }
+
+  deleteEmployee(Id: number)
+  {
+    return this.http.delete('api/ReactiveFormDatas/' + Id).map(res => res.json);
   }
 
 

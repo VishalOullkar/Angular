@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Form } from '@angular/forms'
+import { FormGroup, FormControl, FormBuilder, Form, NgForm } from '@angular/forms'
 import { Validators } from '@angular/forms';
 import { ReactiveformsService } from './reactiveforms.service';
 import { ToastrService } from 'ngx-toastr';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
+import { Reactivemodel } from './reactivemodel';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-reactiveforms',
@@ -43,21 +45,32 @@ export class ReactiveformsComponent implements OnInit {
 
   editorFormGrop = this.fb.group({
 
-    id: null,
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', Validators.required],
-    city: ['', Validators.required],
-    state: ['', Validators.required],
-    zipCode: ['', Validators.required],
-    mobno: ['', Validators.required],
+    Id: null,
+    FirstName: ['', Validators.required],
+    LastName: ['', Validators.required],
+    Email: ['', Validators.required],
+    City: ['', Validators.required],
+    State: ['', Validators.required],
+    ZipCode: ['', Validators.required],
+    Mobno: ['', Validators.required],
   });
+
+
   get f() { return this.editorFormGrop.controls; }
 
   onlyNumberKey(event) {
     return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57;
   }
 
+
+  ShowOrEdit(emp: Reactivemodel) {
+
+    this.editorFormGrop.patchValue(emp);
+    //this.reactiveformsService.SelectedEmployee = Object.assign({}, emp);
+
+    console.warn(emp);
+
+  }
 
 
   onSubmit() {
@@ -69,19 +82,28 @@ export class ReactiveformsComponent implements OnInit {
       return;
     }
 
-    if (this.editorFormGrop.value.id == null) {
+    if (this.editorFormGrop.value.Id == null) {
 
-      this.editorFormGrop.value.id = undefined;
+      this.editorFormGrop.value.Id = undefined;
       this.reactiveformsService.postEmployee(this.editorFormGrop.value).subscribe(
         data => {
-          this.cleardata();
+          this.editorFormGrop.reset();
           this.reactiveformsService.getEmployeeList();
           this.toastrService.success('Submitted successfully', 'Employee Record');
+
         }
       )
 
     }
     else {
+      this.reactiveformsService.PutEmployee(this.editorFormGrop.value.Id, this.editorFormGrop.value)
+        .subscribe(
+        data => {
+          this.reactiveformsService.getEmployeeList();
+          
+          this.toastrService.info('Updated successfully', 'Employee');
+        }
+        );
       console.warn('Employee updated');
     }
 
@@ -89,16 +111,25 @@ export class ReactiveformsComponent implements OnInit {
     console.warn(this.editorFormGrop.value);
   }
 
-  cleardata() {
+  reset()
+  {
 
-    this.editorFormGrop.value.id = null;
-    this.editorFormGrop.value.firstName = '';
-    this.editorFormGrop.value.lastName = '';
-    this.editorFormGrop.value.email = '';
-    this.editorFormGrop.value.city = '';
-    this.editorFormGrop.value.state = '';
-    this.editorFormGrop.value.zipCode = '';
-    this.editorFormGrop.value.mobno = '';
+    this.editorFormGrop.reset();
+  }
+
+  deleteEmployee(Id: number)
+  {
+    console.warn(Id);
+    console.warn('delete method executed');
+    if (confirm("Are you sure to delete this record ?") == true)
+    {
+      this.reactiveformsService.deleteEmployee(Id).subscribe(
+        data => {
+          this.reactiveformsService.getEmployeeList()
+          this.toastrService.info('Deleted successfully','Employee')
+        });
+    }
+
   }
 
   public updateName() {
@@ -107,6 +138,8 @@ export class ReactiveformsComponent implements OnInit {
 
   ngOnInit() {
     this.reactiveformsService.getEmployeeList();
+   
+  
   }
 
 }

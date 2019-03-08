@@ -15,29 +15,28 @@
       <div class="col-lg-6" style="background-color:lavender;">
         <form [formGroup]="editorFormGrop" (ngSubmit)="onSubmit()">
 
-          <input type="hidden" class="form-control" formControlName="id" />
+          <input type="hidden" class="form-control" formControlName="Id" />
 
           <div class="form-group">
             <label>
               First Name :
-              <input type="text" class="form-control" formControlName="firstName" onkeyup="this.value = this.value.toUpperCase();"
-                    required placeholder="Enter first name" />
+              <input type="text" class="form-control" formControlName="FirstName"   required placeholder="Enter first name" />
             </label><br />
 
-            <div class="validation-error" *ngIf="f.firstName.invalid && f.firstName.touched">This Field is Required.</div>
-            <!--<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-    <div *ngIf="f.firstName.errors.required">First Name is required</div>-->
-          <!--</div>-->
+            <div class="validation-error" *ngIf="f.FirstName.invalid && f.FirstName.touched">This Field is Required.</div>
+            <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+    <div *ngIf="f.FirstName.errors.required">First Name is required</div>-->
+          <</div>
           </div>
 
 
       <div class="form-group">
         <label>
           Last Name :
-          <input type="text" class="form-control" formControlName="lastName" required placeholder="Enter last name" />
+          <input type="text" class="form-control" formControlName="LastName" required placeholder="Enter last name" />
         </label>
 
-        <div class="validation-error" *ngIf="f.lastName.invalid && f.lastName.touched">This Field is Required.</div>
+        <div class="validation-error" *ngIf="f.LastName.invalid && f.LastName.touched">This Field is Required.</div>
 
         <!--<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
     <div *ngIf="f.lastName.errors.required">Last Name is required</div>
@@ -61,10 +60,10 @@
 
           <div class="form-group">
             <label>
-              City :<input type="text" class="form-control" formControlName="city" required placeholder="Enter City" />
+              City :<input type="text" class="form-control" formControlName="City" required placeholder="Enter City" />
             </label><br />
 
-            <div class="validation-error" *ngIf="f.city.invalid && f.city.touched">This Field is Required.</div>
+            <div class="validation-error" *ngIf="f.City.invalid && f.City.touched">This Field is Required.</div>
 
             <!--<div *ngIf="submitted && f.city.errors" class="invalid-feedback">
     <div *ngIf="f.city.errors.required">City is required</div>
@@ -73,7 +72,7 @@
 
           <div class="form-group">
             <label>
-              State :<input type="text" class="form-control" formControlName="state" required placeholder="Enter State"/>
+              State :<input type="text" class="form-control" formControlName="State" required placeholder="Enter State"/>
 
             </label><br />
             city
@@ -84,7 +83,7 @@
 
           <div class="form-group">
             <label>
-              ZipCode :<input type="text" class="form-control" formControlName="zipCode" required placeholder="Enter Zip code"
+              ZipCode :<input type="text" class="form-control" formControlName="ZipCode" required placeholder="Enter Zip code"
                       pattern="[0-9]+" minlength="6" maxlength="6" />
             </label><br />
             <!--<div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
@@ -95,7 +94,7 @@
           <div class="form-group">
             <label>
               <!--(keypress)="onlyNumberKey($event)"-->
-              Mobile no. :<input type="text" pattern="[0-9]+" minlength="10" maxlength="10" class="form-control" formControlName="mobno" required
+              Mobile no. :<input type="text" pattern="[0-9]+" minlength="10" maxlength="10" class="form-control" formControlName="Mobno" required
                                placeholder="+91" />
             </label><br />
             <!--<div *ngIf="submitted && f.mobno.errors" class="invalid-feedback">
@@ -106,15 +105,15 @@
           <div class="form-group">
             <label>
               <!--(keypress)="onlyNumberKey($event)"-->
-              Email :<input type="text" #email [pattern]="emailPattern" class="form-control" formControlName="email" required
+              Email :<input type="text" #email [pattern]="emailPattern" class="form-control" formControlName="Email" required
                             placeholder="abc@xyz.com" />
             </label><br />
-            <div *ngIf="f.email.errors && (f.email.touched||f.email.invalid)">
-              <small class="text-danger" *ngIf="f.email.errors.required">Email is required</small>
-            </div>
-            Touched: {{f.email.touched}}
+            <!--<div *ngIf="f.email.errors && (f.Email.touched||f.Email.invalid)">
+              <small class="text-danger" [class.d-none]="f.Email.valid||f.Email.untouched">Email is required</small>
+            </div>-->
+            <!--Touched: {{f.email.touched}}
             Invalid: {{f.email.invalid}}
-            Errors: {{f.email.errors.required}}
+            Errors: {{f.email.errors.required}}-->
 
             <!--<div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
     <div *ngIf="f.Email.errors.required">Email is required</div>
@@ -128,6 +127,7 @@
           <!--</div>-->
 
           <button [disabled]="!editorFormGrop.valid" type="submit" class="btn-success">Submit</button>
+          <button type="button" (click)="reset(editorFormGrop.value)" class="btn-warning">Reset</button>
 
 
         </form>
@@ -145,6 +145,7 @@
             <td>{{emplist.FirstName}}</td>
 
             <td><a class="btn" (click)="ShowOrEdit(emplist)"><i class="fa fa-pencil-square-o"></i></a></td>
+            <td><a class="text-danger" (click)="deleteEmployee(emplist.Id)"><i class="fa fa-trash-o"></i></a></td>
           </tr>
         </table>
       </div>

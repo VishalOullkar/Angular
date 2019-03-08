@@ -4,9 +4,11 @@ import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { myformService } from './myform.service';
 import { Employeemodel } from './employeemodel';
-import { strict } from 'assert';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { Console } from '@angular/core/src/console';
+import { Injectable } from '@angular/core';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-allcontrols',
@@ -15,12 +17,14 @@ import { DatePipe } from '@angular/common';
 })
 export class AllcontrolsComponent implements OnInit {
 
+  test: number;
   msg: string;
   selectedFile: File = null;
   dateOfBirth: Date;
   datePickerConfig: Partial<BsDatepickerConfig>;
 
   customdate: any;
+  public errormsg;
 
 
 
@@ -28,7 +32,7 @@ export class AllcontrolsComponent implements OnInit {
 
     this.customdate = this.datePipe.transform('25-Feb-2018', 'dd/MMM/yyyy');
    
-
+    this.test = 10.50;
 
     this.msg = "";
     this.dateOfBirth = new Date(2015, 1, 2);
@@ -59,6 +63,24 @@ export class AllcontrolsComponent implements OnInit {
     this.myservice.SelectedEmployee = Object.assign({}, emp);
   }
 
+  onDelete(id: number)
+  {
+
+    console.warn('Delete method calling');
+    if (confirm('Are you sure to delete this record') == true)
+    {
+      console.warn(id);
+      this.myservice.deleteEmployee(id).subscribe(
+        data => this.myservice.getEmployeeList()
+      );
+
+    
+     
+        
+    }
+    
+  }
+
 
   savedata(form: NgForm) {
 
@@ -66,9 +88,7 @@ export class AllcontrolsComponent implements OnInit {
 
       form.value.Id = undefined;
       this.myservice.postEmployeess(form.value)
-        .subscribe();
-
-
+        .subscribe()
 
       this.resetdata(form);
       this.myservice.getEmployeeList();
@@ -108,10 +128,12 @@ export class AllcontrolsComponent implements OnInit {
   ngOnInit() {
 
     console.warn(this.customdate);
-    this.myservice.getEmployeeList();
-    console.warn(this.myservice.EmployeeList);
-    this.resetdata()
-    this.myservice.getCountry();
+    this.myservice.getEmployeeList()
+      .subscribe(data => this.myservice.EmployeeList = data,error=>this.errormsg=error);
+     
+  //  console.warn(this.myservice.EmployeeList);
+    this.resetdata();
+    this.myservice.getCountry().subscribe(data=>this.myservice.countrylist=data,error=>this.errormsg=error);
 
   }
 

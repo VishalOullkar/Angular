@@ -65,7 +65,7 @@ export class FileuploadComponent implements OnInit {
 
   Ondelete(id: number) {
     if (confirm("Are you sure to delete this record") == true) {
-      this.moviesService.deleteMovie(id)
+      this.moviesService.deleteMovie(id)  
         .subscribe(x => {
           this.moviesService.getMovieList();
           this.toastrService.info('Deleted', 'Movie');

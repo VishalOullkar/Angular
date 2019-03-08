@@ -103,9 +103,11 @@ namespace ExploreAngular.Controllers
 
         }
 
+
+        [Route("DeleteEmployee/{id}")]
         // DELETE: api/MyForms/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployeeForm([FromRoute] int id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] int id)
         {
             //if (!ModelState.IsValid)
             //{

@@ -15,7 +15,6 @@ import { ApiexampleComponent } from './apiexample/apiexample.component';
 //import {  } from 'rxjs/observable/from';
 import { ToastrModule } from 'ngx-toastr';
 import { NavbarComponent } from './navbar/navbar.component';
-import { LogoComponent } from './logo/logo.component';
 import { EmployeesComponent } from './user/employees/employees.component';
 import { LoginComponent } from './user/login/login.component';
 import { UserComponent } from './user/user.component';
@@ -25,9 +24,11 @@ import { EmployeeListComponent } from './user/employees/employee-list/employee-l
 import { GridDemoComponent } from './grid-demo/grid-demo.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { AllcontrolsComponent } from './allcontrols/allcontrols.component';
+import { ReactiveformComponent } from './basicforms/reactiveform/reactiveform.component';
+import { TemplateformComponent } from './basicforms/templateform/templateform.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent },
   { path: 'counter', component: CounterComponent },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'Hero', component: HeroesComponent },
@@ -36,7 +37,6 @@ const routes: Routes = [
   { path: 'APIExample', component: ApiexampleComponent },
   { path: 'Employee', component: EmployeesComponent },
    { path: 'Navbar', component: NavbarComponent},
-  { path: 'logo', component: LogoComponent },
   { path: 'user', component: UserComponent},
   { path: '', component: LoginComponent, pathMatch: 'full'  },
   { path: 'mycontroller', component: TestComponent },
@@ -44,7 +44,9 @@ const routes: Routes = [
   { path: 'registerdetails', component: EmployeeListComponent },
   { path: 'grid', component: GridDemoComponent },
   { path: 'fileupload', component: FileuploadComponent },
-  { path: 'allcontrols', component: AllcontrolsComponent }
+  { path: 'allcontrols', component: AllcontrolsComponent },
+  { path: 'BasicReactive', component: ReactiveformComponent },
+  { path: 'BasicTemplate', component: TemplateformComponent }
 
   
 
@@ -57,3 +59,7 @@ const routes: Routes = [
 
 
 export class AppRoutingModule { }
+
+export const routingComponents = [NavMenuComponent ,HeroDetailsComponent,FetchDataComponent ,HomeComponent, CounterComponent, HeroesComponent, SignupComponent, ReactiveformsComponent,
+  ApiexampleComponent, EmployeesComponent, NavbarComponent, UserComponent, LoginComponent, TestComponent,
+  EmployeeComponent, EmployeeListComponent, GridDemoComponent, FileuploadComponent, AllcontrolsComponent, ReactiveformComponent, TemplateformComponent]
