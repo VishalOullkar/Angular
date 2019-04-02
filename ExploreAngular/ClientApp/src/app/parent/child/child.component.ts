@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import {  } from 'protractor';
+
 
 @Component({
   selector: 'app-child',
