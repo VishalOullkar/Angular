@@ -28,21 +28,28 @@ import { SignupService } from './signup/signup.service';
 import { myformService } from './allcontrols/myform.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { GridDemoComponent } from './grid-demo/grid-demo.component';
+import { DynamicControlsComponent } from './dynamic-controls/dynamic-controls.component';
 
 
-
-
+// For FusionChart   
+//import * as FusionCharts from 'fusioncharts';
+//import * as Charts from '//fusioncharts/fusioncharts.charts';
+//import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
+//import { FusionChartsModule } from 'angular4-fusioncharts';
+//import { ColumnChartComponent } from './column-chart/column-chart.component';
+//FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme); 
 
 @NgModule({
   declarations: [
-
     AppComponent,
     routingComponents,
     MessagesComponent,
     RegisterdetailsComponent,
     EmployeePipe,
-    EmployeesearchPipe
- 
+    EmployeesearchPipe,
+    DynamicControlsComponent
+
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

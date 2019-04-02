@@ -26,6 +26,9 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
 import { AllcontrolsComponent } from './allcontrols/allcontrols.component';
 import { ReactiveformComponent } from './basicforms/reactiveform/reactiveform.component';
 import { TemplateformComponent } from './basicforms/templateform/templateform.component';
+import { DynamicControlsComponent } from './dynamic-controls/dynamic-controls.component';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './parent/child/child.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,7 +39,7 @@ const routes: Routes = [
   { path: 'Forms', component: ReactiveformsComponent },
   { path: 'APIExample', component: ApiexampleComponent },
   { path: 'Employee', component: EmployeesComponent },
-   { path: 'Navbar', component: NavbarComponent},
+  { path: 'Navbar', component: NavbarComponent},
   { path: 'user', component: UserComponent},
   { path: '', component: LoginComponent, pathMatch: 'full'  },
   { path: 'mycontroller', component: TestComponent },
@@ -46,7 +49,9 @@ const routes: Routes = [
   { path: 'fileupload', component: FileuploadComponent },
   { path: 'allcontrols', component: AllcontrolsComponent },
   { path: 'BasicReactive', component: ReactiveformComponent },
-  { path: 'BasicTemplate', component: TemplateformComponent }
+  { path: 'BasicTemplate', component: TemplateformComponent },
+  { path: 'dynamiccontrols', component: DynamicControlsComponent },
+  { path: 'parent', component: ParentComponent }
 
   
 
@@ -60,6 +65,6 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 
-export const routingComponents = [NavMenuComponent ,HeroDetailsComponent,FetchDataComponent ,HomeComponent, CounterComponent, HeroesComponent, SignupComponent, ReactiveformsComponent,
+export const routingComponents = [ChildComponent,ParentComponent,NavMenuComponent ,HeroDetailsComponent,FetchDataComponent ,HomeComponent, CounterComponent, HeroesComponent, SignupComponent, ReactiveformsComponent,
   ApiexampleComponent, EmployeesComponent, NavbarComponent, UserComponent, LoginComponent, TestComponent,
   EmployeeComponent, EmployeeListComponent, GridDemoComponent, FileuploadComponent, AllcontrolsComponent, ReactiveformComponent, TemplateformComponent]

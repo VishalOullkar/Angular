@@ -26,8 +26,7 @@ export class RegisterdetailsComponent implements OnInit {
     //alert(this.message);
     //console.log(this.message);
   }
-  employeeList: Employee[];
-  selectedEmployee: Employee;
+
 
 
   getEmployeeList() {
@@ -56,11 +55,3 @@ export class RegisterdetailsComponent implements OnInit {
 
 }
 
-class Employee
-{
-  EmployeeID: number;
-  FirstName:string;  
-  LastName :string;
-  Gender   :string;
-  Salary   :string;
-}                         

@@ -5,6 +5,7 @@ import { DatePicker } from 'angular2-datetimepicker';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { MoviesService } from './movies.service';
+import { error } from 'util';
 
 
 
@@ -18,6 +19,7 @@ export class FileuploadComponent implements OnInit {
 
   imageurl: string = "../../assets/Img/Upload-icon.png";
   selectedFile: File = null;
+    public errorMsg;
 
   constructor(private moviesService: MoviesService, private toastrService: ToastrService, private datePipe: DatePipe) {
 
@@ -156,7 +158,7 @@ export class FileuploadComponent implements OnInit {
 
   ngOnInit() {
     this.reset();  
-    this.moviesService.getMovieList();
+    this.moviesService.getMovieList().subscribe(data=>this.moviesService.MovieList=data,error=>this.errorMsg=error);
   }
 
 }

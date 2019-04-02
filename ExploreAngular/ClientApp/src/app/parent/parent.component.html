@@ -1,0 +1,13 @@
+
+<div style="height:500px;width:50%;border:2px;border-style:solid;color:green;border-radius:15px;">
+  Parent Component : <br />
+  <br /><br /><br /><br /><br />
+
+  <h3 style="color:blueviolet">{{message}}</h3>
+  <div style="height:250px;width:50%;border:2px;border-style:solid;color:green;border-radius:15px;">
+    Child Component : <br />
+    <app-child (childEvent)="message=$event" [pval]="name"> </app-child>
+  </div>
+
+</div>
+

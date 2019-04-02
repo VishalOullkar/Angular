@@ -5,6 +5,8 @@ import { Http, Response, Headers, RequestOptions, RequestMethod, } from '@angula
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/observable';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { error } from 'util';
 
 
 @Injectable({
@@ -12,21 +14,32 @@ import { Observable } from 'rxjs/observable';
 })
 export class MoviesService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,private httpClient:HttpClient) { }
 
   MovieList: Movie[];
   SelectedMovie: Movie;
 
 
 
-  getMovieList() {
-    this.http.get('http://localhost/sample/api/Movies')
-      .map((data: Response) => {
-        return data.json() as Movie[];
-      }).toPromise().then(x => {
-        this.MovieList = x;
-        console.warn(this.MovieList)
-      })
+  //getMovieList() {
+  //  this.http.get('http://localhost/sample/api/Movies')
+  //    .map((data: Response) => {
+  //      return data.json() as Movie[];
+  //    }).toPromise().then(x => {
+  //      this.MovieList = x;
+  //      console.warn(this.MovieList)
+  //    })
+  //}
+
+  getMovieList(): Observable<Movie[]>
+  {
+
+    return this.httpClient.get<Movie[]>('http://localhost/sample/api/Movies').catch(this.errorhandler)
+
+  }
+  errorhandler(Error: HttpErrorResponse)
+  {
+    return Observable.throw(Error.message ||'Server Error')
   }
 
 
