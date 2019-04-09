@@ -31,17 +31,17 @@ export class TestService {
 
 
   //  Get Employee List
-  getEmployeeList(){
-    this.httpClient.get<TestModel[]>('api/EmployeeDetails/GetEmployee')
-      .map(data => {
-        this.employeeList = data;
-        console.log(data);
-        return data;
+  getEmployeeList(): Observable<TestModel[]>{
+    return this.httpClient.get < TestModel[]>('api/EmployeeDetails/GetEmployee');
+      //.map(data => {
+      //  this.employeeList = data;
+      //  console.log(this.employeeList);
+      //  return data;
        
-      })
-      .toPromise().then(x => {
+     // })
+   //   .toPromise().then(x => {
         //console.log(x);
-      })
+    //  })
   }
    
   getEmployeeListById(id: number) {

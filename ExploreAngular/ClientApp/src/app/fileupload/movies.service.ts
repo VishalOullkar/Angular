@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Movie } from './movie';
 //import { HttpClient } from '@angular/common/http';
-import { Http, Response, Headers, RequestOptions, RequestMethod, } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { error } from 'util';
+
 
 
 @Injectable({
@@ -14,7 +14,7 @@ import { error } from 'util';
 })
 export class MoviesService {
 
-  constructor(private http: Http,private httpClient:HttpClient) { }
+  constructor(private http: Http, private httpClient: HttpClient) { }
 
   MovieList: Movie[];
   SelectedMovie: Movie;
@@ -31,15 +31,13 @@ export class MoviesService {
   //    })
   //}
 
-  getMovieList(): Observable<Movie[]>
-  {
+  getMovieList(): Observable<Movie[]> {
 
     return this.httpClient.get<Movie[]>('http://localhost/sample/api/Movies').catch(this.errorhandler)
 
   }
-  errorhandler(Error: HttpErrorResponse)
-  {
-    return Observable.throw(Error.message ||'Server Error')
+  errorhandler(Error: HttpErrorResponse) {
+    return Observable.throw(Error.message || 'Server Error')
   }
 
 
@@ -50,10 +48,10 @@ export class MoviesService {
     //formData.append('Image', selectedFile, selectedFile.name);
     //formData.append('Genre', movie.Genre);
     //formData.append('Title', movie.Title);
-  
+
     //return this.http
     //  .post(endpoint, formData);
-  
+
     var body = JSON.stringify(movie);
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
@@ -71,4 +69,8 @@ export class MoviesService {
   deleteMovie(id: number) {
     return this.http.delete('http://localhost/sample/api/Movies/' + id).map(res => res.json());
   }
+
+  
 }
+
+

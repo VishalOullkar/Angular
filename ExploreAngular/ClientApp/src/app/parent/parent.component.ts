@@ -13,6 +13,18 @@ export class ParentComponent implements OnInit {
 
   public message: string = "";
 
+
+  printFoo(param) {
+    if (param) {
+      let y;
+        y= "msg";
+    var x = "foo";
+  }
+
+    console.log(x);
+    
+  }
+
   ngOnInit() {
   }
 

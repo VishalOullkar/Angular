@@ -29,6 +29,7 @@ import { TemplateformComponent } from './basicforms/templateform/templateform.co
 import { DynamicControlsComponent } from './dynamic-controls/dynamic-controls.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './parent/child/child.component';
+import { GridBatchEditingComponent } from './grid/grid-batch-editing/grid-batch-editing.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -51,7 +52,8 @@ const routes: Routes = [
   { path: 'BasicReactive', component: ReactiveformComponent },
   { path: 'BasicTemplate', component: TemplateformComponent },
   { path: 'dynamiccontrols', component: DynamicControlsComponent },
-  { path: 'parent', component: ParentComponent }
+  { path: 'parent', component: ParentComponent },
+  { path: 'igxgrid', component: GridBatchEditingComponent }
 
   
 
@@ -65,6 +67,6 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 
-export const routingComponents = [ChildComponent,ParentComponent,NavMenuComponent ,HeroDetailsComponent,FetchDataComponent ,HomeComponent, CounterComponent, HeroesComponent, SignupComponent, ReactiveformsComponent,
+export const routingComponents = [GridBatchEditingComponent,ChildComponent,ParentComponent,NavMenuComponent ,HeroDetailsComponent,FetchDataComponent ,HomeComponent, CounterComponent, HeroesComponent, SignupComponent, ReactiveformsComponent,
   ApiexampleComponent, EmployeesComponent, NavbarComponent, UserComponent, LoginComponent, TestComponent,
   EmployeeComponent, EmployeeListComponent, GridDemoComponent, FileuploadComponent, AllcontrolsComponent, ReactiveformComponent, TemplateformComponent]

@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 import { strict } from 'assert';
 import { DateFormatter } from 'ngx-bootstrap/datepicker/public_api';
 import { ToastrService } from 'ngx-toastr';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-test',
@@ -16,24 +17,46 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+  employeelen: TestModel[];
 
   ngOnInit() {
-    this.testService.getEmployeeList();
+    //this.employeelen =
+    this.testService.getEmployeeList().subscribe(data => this.testService.employeeList = data);
+    //this.testService.employeeList.length
+  // console.log(this.testService.employeeList.length);
     this.reset();
 
   }
-
-
+  sortedCollection: any[];
+  order: string = "info.name";
+  reverse: boolean = false;
+  config: any;
   msg: string;
   FirstName: string;
   empList: TestModel[];
-  constructor(private testService: TestService, private toastrService:ToastrService) { }      //private http: HttpClient
+  constructor(private testService: TestService, private toastrService: ToastrService,
+    private route: ActivatedRoute, private router: Router, private orderPipe: OrderPipe) {
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 5
+    };
+
+    this.sortedCollection = orderPipe.transform(this.testService.employeeList);
+    console.warn("Sorted Collection" + this.sortedCollection); 
+    this.route.queryParamMap
+      .map(p => p.get('page'))
+      .subscribe(page => this.config.currentPage = page);
+
+    console.log(this.orderPipe);
+  }      //private http: HttpClient
+
+
 
 
   reset(form?: NgForm) {
     if (form != null)
       form.reset();
-
+   // this.testService.employeeList.length
     this.testService.selectedEmployee =
       {
 
@@ -67,6 +90,18 @@ export class TestComponent implements OnInit {
 
   }
 
+  pageChange1(newPage: number) {
+    this.router.navigate(['mycontroller'],{queryParams: { page: newPage }});
+    
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
+  }
 
 
   Onsubmit(form: NgForm) {
